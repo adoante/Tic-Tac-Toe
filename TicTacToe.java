@@ -14,7 +14,7 @@ public class TicTacToe {
 
   public static void main(String[] args) {
     //Creates the TicTacToe Board using a multi-dimensional array
-    char board[][] = new char[][]
+    char[][] board = new char[][]
       {
         {' ',' ',' '},
         {' ',' ',' '},
@@ -24,31 +24,31 @@ public class TicTacToe {
     //Creates a scanner to get user input
     Scanner userInput = new Scanner(System.in);
 
-    //Creates the first player object to save thier name and symbol
+    //Creates the first player object to save their name and symbol
     Player player1 = new Player();
-    //Creates second player object to save thier name and symbol
+    //Creates second player object to save their name and symbol
     Player player2 = new Player();
 
     //Asks user for player 1's name
-    System.out.printf("Enter player 1: ");
+    System.out.print("Enter player 1: ");
     String name = userInput.nextLine();
 
     //Sets player 1's name
     player1.setName(name);
 
     //Asks user for player 1's symbol
-    System.out.printf("Enter player 1 symbol (ex. X, O or A, B): ");
+    System.out.print("Enter player 1 symbol (ex. X, O or A, B): ");
     char symbol = userInput.next().charAt(0);
 
     //Sets player 1's symbol
     player1.setSymbol(symbol);
 
-    //Loops untill Player 2 enters a name and symbol that is not equal to player 1 name
+    //Loops until Player 2 enters a name and symbol that is not equal to player 1 name
     while (true) {
       //If user tries to enter a name that has already been picked throws PlayerInputException
       try {
         //Asks user for player 2's name
-        System.out.printf("Enter player 2: ");
+        System.out.print("Enter player 2: ");
         name = userInput.next();
         userInput.nextLine();
 
@@ -69,12 +69,12 @@ public class TicTacToe {
       }
     }
 
-    //Loops untill Player 2 enters a symbol that is not equal to player 1 symbol
+    //Loops until Player 2 enters a symbol that is not equal to player 1 symbol
     while (true) {
       //If user tries to enter a symbol that has already been picked throws PlayerInputException
       try {
         //Asks user for player 2's symbol
-        System.out.printf("Enter player 2 symbol (ex. X, O or A, B): ");
+        System.out.print("Enter player 2 symbol (ex. X, O or A, B): ");
         symbol = userInput.next().charAt(0);
         userInput.nextLine();
 
@@ -100,21 +100,21 @@ public class TicTacToe {
 
     //Main Game (while) loop that only exits when the players want to stop playing tic-tac-toe
     while (running) {
-      //Sub Game (While) Loop, loops untill a win or tie condition is met
+      //Sub Game (While) Loop, loops until a win or tie condition is met
       while (game) {
-        //While loop continues to ask player 1 for proper input untill no exception is caught
+        //While loop continues to ask player 1 for proper input until no exception is caught
         while (true) {
           //Try loop will catch an exception when player 1 enters an invalid move and if the chosen square is full.
           try {
-            //Asks the user for thier first move (a sqaure on the TicTacToe board)
-            System.out.printf("Player 1 turn. Enter the square id to place your symbol: ");
+            //Asks the user for their first move (a square on the TicTacToe board)
+            System.out.print("Player 1 turn. Enter the square id to place your symbol: ");
             String move = userInput.nextLine();
 
             //Checks player 1's move if its valid and hasn't been played
-            validMove(move, board);
+            validMove(move);
             checkSquare(move, board);
 
-            //Places player 1's symbol in thier chosen square
+            //Places player 1's symbol in their chosen square
             board[move.charAt(0) - 49][move.charAt(1) - 65] = player1.getSymbol();
 
             //Prints the TicTacToe board
@@ -137,19 +137,19 @@ public class TicTacToe {
           break;
         }
 
-        //While loop continues ask player 2 for proper input untill no exception is caught
+        //While loop continues ask player 2 for proper input until no exception is caught
         while (true) {
           //Second Try loop will catch an exception when player 2 enters an invalid move and if the chosen square is full.
           try {
-            //Asks the user for thier first move (a sqaure on the TicTacToe board)
-            System.out.printf("Player 2 turn. Enter the square id to place your symbol: ");
+            //Asks the user for their first move (a square on the TicTacToe board)
+            System.out.print("Player 2 turn. Enter the square id to place your symbol: ");
             String move = userInput.nextLine();
 
             //Checks player 2's move if its valid and hasn't been played
-            validMove(move, board);
+            validMove(move);
             checkSquare(move, board);
 
-            //Places player 2's symbol in thier chosen square
+            //Places player 2's symbol in their chosen square
             board[move.charAt(0) - 49][move.charAt(1) - 65] = player2.getSymbol();
 
             //Prints the TicTacToe board
@@ -175,14 +175,14 @@ public class TicTacToe {
 
       //While loop exits when input equals Y/N y/n Yes/No YES/NO is entered
       while (true) {
-        //Throws KeepPlayingInputException if anything other than a Yes/No type anwser is entered and keeps asking if they wish to keep playing
+        //Throws KeepPlayingInputException if anything other than a Yes/No type answer is entered and keeps asking if they wish to keep playing
         try {
           //Asks user if they want to keep playing tic tac toe
           System.out.println();
           System.out.print("Would you like to play another game? Y/N : ");
           String play = userInput.nextLine();
           play = play.toUpperCase();
-          //Checks if user input is vaild if not throws KeepPlayingInputException
+          //Checks if user input is valid if not throws KeepPlayingInputException
           if (play.equals("N") || play.equals("NO")) {
             //Sets the main game loop to false
             running = false;
@@ -226,7 +226,7 @@ public class TicTacToe {
    */
   public static boolean printWinner(boolean game, Player player1, Player player2, boolean checkTie) {
     //If the sub game loop is false check if a tie has happened
-    if (game == false) {
+    if (!game) {
       //If a tie has happened print that a Player 1 and 2 have tied
       if (checkTie) {
         System.out.println(player1.getName() + " and " + player2.getName() + " have tied!");
@@ -255,10 +255,9 @@ public class TicTacToe {
   /**
    * Checks to see if user input has entered proper input for picking a square
    * @param  move                 The user input being checked
-   * @param  board                The board user inputs should be on
    * @throws InvalidMoveException Tells user that what they entered isn't proper input
    */
-  public static void validMove(String move, char[][] board) throws InvalidMoveException {
+  public static void validMove(String move) throws InvalidMoveException {
     //Checks if the first character of string is 1,2, or 3 else throw exception
     if (move.charAt(0) < '1' || move.charAt(0) > '3') {
       throw new InvalidMoveException();
@@ -277,10 +276,10 @@ public class TicTacToe {
     //Prints the column labels
     System.out.println("   A B C");
     for (int i = 0; i < board.length; i++) {
-      //Prints | to seperate squares
+      //Prints | to separate squares
       System.out.print(i + 1 + " |");
       for (int j = 0; j < board[0].length; j++) {
-        //Prints the charcter in a square and a | to seperate it from the next character
+        //Prints the character in a square and a | to separate it from the next character
         System.out.print(board[i][j] + "|");
       }
       //Moves onto the next row to print
@@ -299,11 +298,8 @@ public class TicTacToe {
    */
   public static boolean checkWinConditions(char[][] board, Player player, int cnt) {
     //Checks every single win or tie condition if any return true a winner or tie has been found
-    if (checkRows(board, player, cnt) || checkColumns(board, player, cnt) || checkDiag1(board, player, cnt)
-        || checkDiag2(board, player) || checkTie(board, cnt)) {
-      return false;
-    }
-    return true;
+    return !checkRows(board, player, cnt) && !checkColumns(board, player, cnt) && !checkDialog1(board, player, cnt)
+            && !checkDialog2(board, player) && !checkTie(board, cnt);
   }
 
   /**
@@ -314,17 +310,14 @@ public class TicTacToe {
    */
   public static boolean checkTie(char[][] board, int cnt) {
     //Index's through the board or 2D array to check if all 9 squares have been filled if they have then a tie has happened
-    for (int i = 0; i < board.length; i++) {
+    for (char[] chars : board) {
       for (int j = 0; j < board[0].length; j++) {
-        if (board[i][j] != ' ') {
+        if (chars[j] != ' ') {
           cnt++;
         }
       }
     }
-    if (cnt == 9) {
-      return true;
-    }
-    return false;
+    return cnt == 9;
   }
 
   /**
@@ -380,7 +373,7 @@ public class TicTacToe {
    * @param  cnt    A count used to index through the 2D array
    * @return        true or false
    */
-  public static boolean checkDiag1 (char[][] board, Player player, int cnt) {
+  public static boolean checkDialog1(char[][] board, Player player, int cnt) {
     //If the count is equal to the board length then the recursive method was able to check all square part of the diagonal
     if (cnt == board.length) {
       return true;
@@ -391,7 +384,7 @@ public class TicTacToe {
     }
     //Updates count and checks the next square in the diagonal
     cnt++;
-    return checkDiag1 (board, player, cnt);
+    return checkDialog1(board, player, cnt);
   }
 
   /**
@@ -400,11 +393,8 @@ public class TicTacToe {
    * @param  player The player's symbol being checked for a win
    * @return        true or false
    */
-  public static boolean checkDiag2 (char[][] board, Player player) {
+  public static boolean checkDialog2(char[][] board, Player player) {
     //Checks all three squares in the diagonal to the players symbol
-    if (board[0][2] == player.getSymbol() && board[1][1] == player.getSymbol() && board[2][0] == player.getSymbol()) {
-        return true;
-    }
-    return false;
+    return board[0][2] == player.getSymbol() && board[1][1] == player.getSymbol() && board[2][0] == player.getSymbol();
   }
 }
