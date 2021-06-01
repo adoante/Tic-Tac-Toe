@@ -127,6 +127,9 @@ public class TicTacToe {
             break;
 
           }
+          catch (StringIndexOutOfBoundsException e) {
+            System.out.println("You must enter a square id.");
+          }
           catch (InvalidMoveException e) {
             System.out.println(e.getMessage());
           }
@@ -161,6 +164,9 @@ public class TicTacToe {
             //Breaks out of loop and starts player 1 move
             break;
 
+          }
+          catch (StringIndexOutOfBoundsException e) {
+            System.out.println("You must enter a square id.");
           }
           catch (InvalidMoveException e) {
             System.out.println(e.getMessage());
