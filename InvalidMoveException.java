@@ -10,19 +10,13 @@
  */
 
  public class InvalidMoveException extends Exception {
-   /**
-    * Tells user that what they entered isn't proper input
-    */
-   public InvalidMoveException() {
-     super("Please enter a proper input for choosing a square to fill.");
-   }
 
    /**
     * Tells user that the square they chose is already been picked
     * @param move The Square id
     */
-   public InvalidMoveException(String move) {
-     super("Square \"" + move + "\" is full, please pick another.");
+   public InvalidMoveException(int move) {
+     super("Square " + move + " is full or " + "is not part of the board." );
    }
 
  }
