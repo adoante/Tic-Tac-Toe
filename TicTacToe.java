@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
  * TicTacToeTester.java: Simulates a Tic-Tac-Toe Games and prints a players stats
  *
  * @author Adolfo Sanpedro Gante
- * @version 1.0
+ * @version 2.0
  */
 
 public class TicTacToe {
