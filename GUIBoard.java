@@ -68,7 +68,7 @@ public class GUIBoard implements ActionListener {
     //Sets the 'X' to actually close
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     //Sets the title
-    frame.setTitle("BUSSY");
+    frame.setTitle("TicTacToe");
     //Makes the frame visable
     frame.setVisible(true);
     //Makes the frame size to be 500x500 pixels
